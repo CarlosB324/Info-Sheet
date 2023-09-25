@@ -3,7 +3,9 @@ html, body {
     padding: 0;
 }
 
-.info-grid {
+.info-grid,
+.comment-section,
+.example-section {
     min-width: 530px;
 }
 
