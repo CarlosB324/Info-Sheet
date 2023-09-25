@@ -118,7 +118,7 @@ function appendItemToCommentInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info comment">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `commentInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -167,7 +167,7 @@ function appendItemToBpInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `bpInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -216,7 +216,7 @@ function appendItemToPulseInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `pulseInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -265,7 +265,7 @@ function appendItemToRmInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `rmInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -314,7 +314,7 @@ function appendItemToOTwoInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `oTwoInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -363,7 +363,7 @@ function appendItemToFdInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `fdInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -412,7 +412,7 @@ function appendItemToBmuInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `bmuInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -461,7 +461,7 @@ function appendItemToPainInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `painInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -510,7 +510,7 @@ function appendItemToMdInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `mdInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -559,7 +559,7 @@ function appendItemToLasixInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `lasixInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -608,7 +608,7 @@ function appendItemToCarvInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `carvInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -657,7 +657,7 @@ function appendItemToMorphInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `morphInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -706,7 +706,7 @@ function appendItemToLorazInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `lorazInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
@@ -755,7 +755,7 @@ function appendItemToDropsInfoSheetEl(item) {
     
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
-    newEl.addEventListener("click", function() {
+    newEl.addEventListener("dblclick", function() {
         let exactLocationOfItemInDB = ref(database, `dropsInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
