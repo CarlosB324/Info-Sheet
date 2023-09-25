@@ -1,0 +1,104 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.info-grid {
+    min-width: 530px;
+}
+
+.general-info-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em 0;
+    background: lightgray;
+    margin: 0 auto;
+}
+
+.data-section {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    background: lightgray;
+}
+
+.title {
+    min-width: 100px;
+    max-width: 100px;
+    margin: auto 0;
+    text-align: center;
+    align-self: center;
+    padding-left: 1em;
+}
+
+.section-info {
+    display: flex;
+    /* align-items: center; */
+}
+
+.info {
+    width: 70px;
+    text-align: center;
+    margin: auto;
+    border-left: 1px solid black;
+}
+
+.comment {
+    width: 120px;
+}
+
+.save-section {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0 auto auto;
+    padding-right: 1em;
+}
+
+.medicine-info-section,
+.example-section,
+.comment-section {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 1em 0;
+    background: lightgray;
+}
+
+input,
+textarea {
+    border: none;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 80px;
+    resize: none;
+}
+
+button {
+    background: gray;
+    border: none;
+    border-radius: 5px;
+}
+
+.orange {
+  background-color: orange;  
+}
+
+.blue {
+  background-color: #2583DA;  
+}
+
+.red {
+    background: lightcoral;
+}
+
+.yellow {
+    background: lightsteelblue;
+}
+
+.hide {
+    display: none,
+}
+
+
