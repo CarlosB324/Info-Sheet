@@ -8,6 +8,8 @@ const appSettings = {
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const commentInfoSheetInDB = ref(database, "commentInfoSheet")
+const dateInfoSheetInDB = ref(database, "dateInfoSheet")
+const timeInfoSheetInDB = ref(database, "timeInfoSheet")
 const bpInfoSheetInDB = ref(database, "bpInfoSheet")
 const pulseInfoSheetInDB = ref(database, "pulseInfoSheet")
 const rmInfoSheetInDB = ref(database, "rmInfoSheet")
@@ -16,15 +18,24 @@ const fdInfoSheetInDB = ref(database, "fdInfoSheet")
 const bmuInfoSheetInDB = ref(database, "bmuInfoSheet")
 const painInfoSheetInDB = ref(database, "painInfoSheet")
 const mdInfoSheetInDB = ref(database, "mdInfoSheet")
+const mtInfoSheetInDB = ref(database, "mtInfoSheet")
 const lasixInfoSheetInDB = ref(database, "lasixInfoSheet")
 const carvInfoSheetInDB = ref(database, "carvInfoSheet")
 const morphInfoSheetInDB = ref(database, "morphInfoSheet")
 const lorazInfoSheetInDB = ref(database, "lorazInfoSheet")
-const dropsInfoSheetInDB = ref(database, "dropsInfoSheet")
+const ssoftInfoSheetInDB = ref(database, "ssoftInfoSheet")
 
 const commentInfo = document.getElementById('comment-info')
 const commentInput = document.getElementById('comment-input')
 const commentSaveBtn = document.getElementById('comment-save-btn')
+
+const dateInfo = document.getElementById('date-info')
+const dateInput = document.getElementById('date-input')
+const dateSaveBtn = document.getElementById('date-save-btn')
+
+const timeInfo = document.getElementById('time-info')
+const timeInput = document.getElementById('time-input')
+const timeSaveBtn = document.getElementById('time-save-btn')
 
 const bpInfo = document.getElementById('bp-info')
 const bpInput = document.getElementById('bp-input')
@@ -58,6 +69,10 @@ const mdInfo = document.getElementById('md-info')
 const mdInput = document.getElementById('md-input')
 const mdSaveBtn = document.getElementById('md-save-btn')
 
+const mtInfo = document.getElementById('mt-info')
+const mtInput = document.getElementById('mt-input')
+const mtSaveBtn = document.getElementById('mt-save-btn')
+
 const lasixInfo = document.getElementById('lasix-info')
 const lasixInput = document.getElementById('lasix-input')
 const lasixSaveBtn = document.getElementById('lasix-save-btn')
@@ -74,9 +89,82 @@ const lorazInfo = document.getElementById('loraz-info')
 const lorazInput = document.getElementById('loraz-input')
 const lorazSaveBtn = document.getElementById('loraz-save-btn')
 
-const dropsInfo = document.getElementById('drops-info')
-const dropsInput = document.getElementById('drops-input')
-const dropsSaveBtn = document.getElementById('drops-save-btn')
+const ssoftInfo = document.getElementById('ssoft-info')
+const ssoftInput = document.getElementById('ssoft-input')
+const ssoftSaveBtn = document.getElementById('ssoft-save-btn')
+
+const allInfoSaveBtn = document.getElementById('all-info-save-btn')
+const allFbpSaveBtn = document.getElementById('all-fbp-save-btn')
+const allMedSaveBtn = document.getElementById('all-med-save-btn')
+
+// All Save Button
+
+allInfoSaveBtn.addEventListener('click', function() {
+    let dateInputValue = dateInput.value
+    let timeInputValue = timeInput.value
+    let bpInputValue = bpInput.value
+    let pulseInputValue = pulseInput.value
+    let rmInputValue = rmInput.value
+    let oTwoInputValue = oTwoInput.value
+    
+    push(dateInfoSheetInDB, dateInputValue)
+    push(timeInfoSheetInDB, timeInputValue)
+    push(bpInfoSheetInDB, bpInputValue)
+    push(pulseInfoSheetInDB, pulseInputValue)
+    push(rmInfoSheetInDB, rmInputValue)
+    push(oTwoInfoSheetInDB, oTwoInputValue)
+    
+    dateInput.value = ""
+    timeInput.value = ""
+    bpInput.value = ""
+    pulseInput.value = ""
+    rmInput.value = ""
+    oTwoInput.value = ""
+})
+
+// All FBP Save Function
+
+allFbpSaveBtn.addEventListener('click', function() {
+    let fdInputValue = fdInput.value
+    let bmuInputValue = bmuInput.value
+    let painInputValue = painInput.value
+    
+    push(fdInfoSheetInDB, fdInputValue)
+    push(bmuInfoSheetInDB, bmuInputValue)
+    push(painInfoSheetInDB, painInputValue)
+    
+    fdInput.value = ""
+    bmuInput.value = ""
+    painInput.value = ""
+})
+
+// All Medicine Save Function
+
+allMedSaveBtn.addEventListener('click', function() {
+    let mdInputValue = mdInput.value
+    let mtInputValue = mtInput.value
+    let lasixInputValue = lasixInput.value
+    let carvInputValue = carvInput.value
+    let morphInputValue = morphInput.value
+    let lorazInputValue = lorazInput.value
+    let ssoftInputValue = ssoftInput.value
+    
+    push(mdInfoSheetInDB, mdInputValue)
+    push(mtInfoSheetInDB, mtInputValue)
+    push(lasixInfoSheetInDB, lasixInputValue)
+    push(carvInfoSheetInDB, carvInputValue)
+    push(morphInfoSheetInDB, morphInputValue)
+    push(lorazInfoSheetInDB, lorazInputValue)
+    push(ssoftInfoSheetInDB, ssoftInputValue)
+    
+    mdInput.value = ""
+    mtInput.value = ""
+    lasixInput.value = ""
+    carvInput.value = ""
+    morphInput.value = ""
+    lorazInput.value = ""
+    ssoftInput.value = ""
+})
 
 // Comment Function
 
@@ -125,6 +213,104 @@ function appendItemToCommentInfoSheetEl(item) {
     })
     
     commentInfo.append(newEl)
+}
+
+// Date Function
+
+dateSaveBtn.addEventListener('click', function() {
+    let inputValue = dateInput.value
+    
+    push(dateInfoSheetInDB, inputValue)
+    
+    dateInput.value = ""
+})
+
+onValue(dateInfoSheetInDB, function(snapshot) {
+    if (snapshot.exists()) {
+        let itemsArray = Object.entries(snapshot.val())
+    
+        clearDateInfoSheetEl()
+        
+        for (let i = 0; i < itemsArray.length; i++) {
+            let currentItem = itemsArray[i]
+            let currentItemID = currentItem[0]
+            let currentItemValue = currentItem[1]
+            
+            appendItemToDateInfoSheetEl(currentItem)
+        }    
+    } else {
+        dateInfo.innerHTML = ``
+    }
+})
+
+function clearDateInfoSheetEl() {
+    dateInfo.innerHTML = ""
+}
+
+function appendItemToDateInfoSheetEl(item) {
+    let itemID = item[0]
+    let itemValue = item[1]
+    
+    let newEl = document.createElement("p")
+    
+    newEl.innerHTML = `<p class="info">${itemValue}</p>`
+    
+    newEl.addEventListener("dblclick", function() {
+        let exactLocationOfItemInDB = ref(database, `dateInfoSheet/${itemID}`)
+        
+        remove(exactLocationOfItemInDB)
+    })
+    
+    dateInfo.append(newEl)
+}
+
+// Time Function
+
+timeSaveBtn.addEventListener('click', function() {
+    let inputValue = timeInput.value
+    
+    push(timeInfoSheetInDB, inputValue)
+    
+    timeInput.value = ""
+})
+
+onValue(timeInfoSheetInDB, function(snapshot) {
+    if (snapshot.exists()) {
+        let itemsArray = Object.entries(snapshot.val())
+    
+        clearTimeInfoSheetEl()
+        
+        for (let i = 0; i < itemsArray.length; i++) {
+            let currentItem = itemsArray[i]
+            let currentItemID = currentItem[0]
+            let currentItemValue = currentItem[1]
+            
+            appendItemToTimeInfoSheetEl(currentItem)
+        }    
+    } else {
+        timeInfo.innerHTML = ``
+    }
+})
+
+function clearTimeInfoSheetEl() {
+    timeInfo.innerHTML = ""
+}
+
+function appendItemToTimeInfoSheetEl(item) {
+    let itemID = item[0]
+    let itemValue = item[1]
+    
+    let newEl = document.createElement("p")
+    
+    newEl.innerHTML = `<p class="info">${itemValue}</p>`
+    
+    newEl.addEventListener("dblclick", function() {
+        let exactLocationOfItemInDB = ref(database, `timeInfoSheet/${itemID}`)
+        
+        remove(exactLocationOfItemInDB)
+    })
+    
+    timeInfo.append(newEl)
 }
 
 // Blood Pressure Function
@@ -519,6 +705,55 @@ function appendItemToMdInfoSheetEl(item) {
     mdInfo.append(newEl)
 }
 
+// Medicine Time Function
+
+mtSaveBtn.addEventListener('click', function() {
+    let inputValue = mtInput.value
+    
+    push(mtInfoSheetInDB, inputValue)
+    
+    mtInput.value = ""
+})
+
+onValue(mtInfoSheetInDB, function(snapshot) {
+    if (snapshot.exists()) {
+        let itemsArray = Object.entries(snapshot.val())
+    
+        clearMtInfoSheetEl()
+        
+        for (let i = 0; i < itemsArray.length; i++) {
+            let currentItem = itemsArray[i]
+            let currentItemID = currentItem[0]
+            let currentItemValue = currentItem[1]
+            
+            appendItemToMtInfoSheetEl(currentItem)
+        }    
+    } else {
+        mtInfo.innerHTML = ``
+    }
+})
+
+function clearMtInfoSheetEl() {
+    mtInfo.innerHTML = ""
+}
+
+function appendItemToMtInfoSheetEl(item) {
+    let itemID = item[0]
+    let itemValue = item[1]
+    
+    let newEl = document.createElement("p")
+    
+    newEl.innerHTML = `<p class="info">${itemValue}</p>`
+    
+    newEl.addEventListener("dblclick", function() {
+        let exactLocationOfItemInDB = ref(database, `mtInfoSheet/${itemID}`)
+        
+        remove(exactLocationOfItemInDB)
+    })
+    
+    mtInfo.append(newEl)
+}
+
 // Lasix Function
 
 lasixSaveBtn.addEventListener('click', function() {
@@ -715,39 +950,39 @@ function appendItemToLorazInfoSheetEl(item) {
     lorazInfo.append(newEl)
 }
 
-// Drops Function
+// Stool Softener Function
 
-dropsSaveBtn.addEventListener('click', function() {
-    let inputValue = dropsInput.value
+ssoftSaveBtn.addEventListener('click', function() {
+    let inputValue = ssoftInput.value
     
-    push(dropsInfoSheetInDB, inputValue)
+    push(ssoftInfoSheetInDB, inputValue)
     
-    dropsInput.value = ""
+    ssoftInput.value = ""
 })
 
-onValue(dropsInfoSheetInDB, function(snapshot) {
+onValue(ssoftInfoSheetInDB, function(snapshot) {
     if (snapshot.exists()) {
         let itemsArray = Object.entries(snapshot.val())
     
-        clearDropsInfoSheetEl()
+        clearSsoftInfoSheetEl()
         
         for (let i = 0; i < itemsArray.length; i++) {
             let currentItem = itemsArray[i]
             let currentItemID = currentItem[0]
             let currentItemValue = currentItem[1]
             
-            appendItemToDropsInfoSheetEl(currentItem)
+            appendItemToSsoftInfoSheetEl(currentItem)
         }    
     } else {
-        dropsInfo.innerHTML = ``
+        ssoftInfo.innerHTML = ``
     }
 })
 
-function clearDropsInfoSheetEl() {
-    dropsInfo.innerHTML = ""
+function clearSsoftInfoSheetEl() {
+    ssoftInfo.innerHTML = ""
 }
 
-function appendItemToDropsInfoSheetEl(item) {
+function appendItemToSsoftInfoSheetEl(item) {
     let itemID = item[0]
     let itemValue = item[1]
     
@@ -756,10 +991,10 @@ function appendItemToDropsInfoSheetEl(item) {
     newEl.innerHTML = `<p class="info">${itemValue}</p>`
     
     newEl.addEventListener("dblclick", function() {
-        let exactLocationOfItemInDB = ref(database, `dropsInfoSheet/${itemID}`)
+        let exactLocationOfItemInDB = ref(database, `ssoftInfoSheet/${itemID}`)
         
         remove(exactLocationOfItemInDB)
     })
     
-    dropsInfo.append(newEl)
+    ssoftInfo.append(newEl)
 }

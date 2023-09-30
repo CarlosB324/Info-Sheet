@@ -9,7 +9,9 @@ html, body {
     min-width: 530px;
 }
 
-.general-info-section {
+.general-info-section,
+.fbp-info-section,
+.medicine-info-section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -56,9 +58,19 @@ html, body {
     padding-right: 1em;
 }
 
+.all-save-section {
+    padding: 20px 10px 10px 10px;
+    margin: auto;
+}
+
+.all-save-btn {
+    padding: 20px 40px;
+}
+
 .medicine-info-section,
 .example-section,
-.comment-section {
+.comment-section,
+.fbp-info-section {
     margin-top: 2em;
     margin-bottom: 2em;
     padding: 1em 0;
