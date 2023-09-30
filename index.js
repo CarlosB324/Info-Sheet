@@ -69,10 +69,6 @@ const mdInfo = document.getElementById('md-info')
 const mdInput = document.getElementById('md-input')
 const mdSaveBtn = document.getElementById('md-save-btn')
 
-const mtInfo = document.getElementById('mt-info')
-const mtInput = document.getElementById('mt-input')
-const mtSaveBtn = document.getElementById('mt-save-btn')
-
 const lasixInfo = document.getElementById('lasix-info')
 const lasixInput = document.getElementById('lasix-input')
 const lasixSaveBtn = document.getElementById('lasix-save-btn')
@@ -142,7 +138,6 @@ allFbpSaveBtn.addEventListener('click', function() {
 
 allMedSaveBtn.addEventListener('click', function() {
     let mdInputValue = mdInput.value
-    let mtInputValue = mtInput.value
     let lasixInputValue = lasixInput.value
     let carvInputValue = carvInput.value
     let morphInputValue = morphInput.value
@@ -150,7 +145,6 @@ allMedSaveBtn.addEventListener('click', function() {
     let ssoftInputValue = ssoftInput.value
     
     push(mdInfoSheetInDB, mdInputValue)
-    push(mtInfoSheetInDB, mtInputValue)
     push(lasixInfoSheetInDB, lasixInputValue)
     push(carvInfoSheetInDB, carvInputValue)
     push(morphInfoSheetInDB, morphInputValue)
@@ -158,7 +152,6 @@ allMedSaveBtn.addEventListener('click', function() {
     push(ssoftInfoSheetInDB, ssoftInputValue)
     
     mdInput.value = ""
-    mtInput.value = ""
     lasixInput.value = ""
     carvInput.value = ""
     morphInput.value = ""
@@ -703,55 +696,6 @@ function appendItemToMdInfoSheetEl(item) {
     })
     
     mdInfo.append(newEl)
-}
-
-// Medicine Time Function
-
-mtSaveBtn.addEventListener('click', function() {
-    let inputValue = mtInput.value
-    
-    push(mtInfoSheetInDB, inputValue)
-    
-    mtInput.value = ""
-})
-
-onValue(mtInfoSheetInDB, function(snapshot) {
-    if (snapshot.exists()) {
-        let itemsArray = Object.entries(snapshot.val())
-    
-        clearMtInfoSheetEl()
-        
-        for (let i = 0; i < itemsArray.length; i++) {
-            let currentItem = itemsArray[i]
-            let currentItemID = currentItem[0]
-            let currentItemValue = currentItem[1]
-            
-            appendItemToMtInfoSheetEl(currentItem)
-        }    
-    } else {
-        mtInfo.innerHTML = ``
-    }
-})
-
-function clearMtInfoSheetEl() {
-    mtInfo.innerHTML = ""
-}
-
-function appendItemToMtInfoSheetEl(item) {
-    let itemID = item[0]
-    let itemValue = item[1]
-    
-    let newEl = document.createElement("p")
-    
-    newEl.innerHTML = `<p class="info">${itemValue}</p>`
-    
-    newEl.addEventListener("dblclick", function() {
-        let exactLocationOfItemInDB = ref(database, `mtInfoSheet/${itemID}`)
-        
-        remove(exactLocationOfItemInDB)
-    })
-    
-    mtInfo.append(newEl)
 }
 
 // Lasix Function
